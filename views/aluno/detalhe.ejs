@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Aluno</title>
+</head>
+<body>
+    <%- include("../partials/cabecalho") %>
+    <% if (aluno != undefined){ %>
+    <div>
+        <b>matricula:</b>
+        <%= aluno.matricula %>
+    </div>
+    <div>
+        <b>Nome:</b>
+        <%= aluno.nome %>
+    </div>
+    <div>
+        <b>Curso:</b>
+        <%= aluno.curso %>
+    </div>
+<% } else { %>
+    <div>Aluno não encontrado</div>
+<% } %>
+<a href="/alunos"> voltar </a>
+<%- include("../partials/rodape") %>
+</body>
+</html>

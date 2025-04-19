@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página inicial</title>
+    <!-- primeiro botsrap depois o meu css, para que o arquivo funcione  -->
+    <%- include("partials/cabecalho") %>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <div>
+        Nome: <%= pessoa.nome %>
+    </div>
+    <div>
+        Curso: <%= pessoa.curso %>
+    </div>
+    <% if (pessoa.curso == 'Computação') {%>
+        <div>Parabens, é o melhor curso!</div>
+    <% } %>
+    <%- include("partials/rodape") %>
+</body>
+</html>
