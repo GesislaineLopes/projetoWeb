@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página inicial</title>
-    <!-- primeiro botsrap depois o meu css, para que o arquivo funcione  -->
+    <!-- primeiro bootstrap depois o meu css, para que o arquivo funcione -->
     <%- include("partials/cabecalho") %>
+    <%- include("partials/menu") %>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -16,9 +17,10 @@
     <div>
         Curso: <%= pessoa.curso %>
     </div>
-    <% if (pessoa.curso == 'Computação') {%>
-        <div>Parabens, é o melhor curso!</div>
+    <% if (pessoa.curso == 'Computação') { %>
+        <div>Parabéns, é o melhor curso!</div>
     <% } %>
+    
     <%- include("partials/rodape") %>
 </body>
 </html>
