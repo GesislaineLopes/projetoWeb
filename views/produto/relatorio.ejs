@@ -15,24 +15,26 @@
             Produto cadastrado com <b>sucesso</b>.
         </div>
     <% } %>
-    <h2>Relatório de Produtos</h2>
-    <script>
-        setTimeout(() => {
-            const alert = document.getElementById('success-alert');
-            if (alert) {
-                alert.style.display = 'none';
-            }
-        }, 3000);
-    </script>
-    <% produtos.forEach(produto => { %>
-        <div><b>Nome:</b> <%= produto.nome %></div>
-        <div><b>Descrição:</b> <%= produto.descricao || 'Não informado' %></div>
-        <div><b>Preço:</b> R$ <%= produto.preco.toFixed(2) %></div>
-        <div>
-            <a href="/produtos/<%= produto._id %>" class="btn btn-primary">Detalhar</a>
-        </div>
-        <hr>
-    <% }); %>
+    <h2 style="text-align: center;">Relatório de Produtos</h2>
+    <div class="container" style="text-align: left;">
+        <script>
+            setTimeout(() => {
+                const alert = document.getElementById('success-alert');
+                if (alert) {
+                    alert.style.display = 'none';
+                }
+            }, 3000);
+        </script>
+        <% produtos.forEach(produto => { %>
+            <div><b>Nome:</b> <%= produto.nome %></div>
+            <div><b>Descrição:</b> <%= produto.descricao || 'Não informado' %></div>
+            <div><b>Preço:</b> R$ <%= produto.preco.toFixed(2) %></div>
+            <div>
+                <a href="/produtos/<%= produto._id %>" class="btn btn-primary">Detalhar</a>
+            </div>
+            <hr>
+        <% }); %>
+    </div>
     <%- include("../partials/rodape") %>
 </body>
 </html>

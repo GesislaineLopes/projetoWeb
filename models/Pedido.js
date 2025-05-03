@@ -1,13 +1,12 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-const pedidoSchema = new Schema({
-    cliente: { type: Schema.Types.ObjectId, ref: "Cliente", required: true },
+const pedidoSchema = new mongoose.Schema({
+    cliente: { type: mongoose.Schema.Types.ObjectId, ref: 'Cliente', required: true },
     produtos: [{
-        produto: { type: Schema.Types.ObjectId, ref: "Produto", required: true },
-        quantidade: { type: Number, required: true, min: 1 }
+        produto: { type: mongoose.Schema.Types.ObjectId, ref: 'Produto', required: true },
+        quantidade: { type: Number, required: true }
     }],
-    dataPedido: { type: Date, default: Date.now }
+    precoTotal: { type: Number }
 });
 
-module.exports = mongoose.model("Pedido", pedidoSchema);
+module.exports = mongoose.model('Pedido', pedidoSchema);

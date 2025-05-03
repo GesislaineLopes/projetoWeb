@@ -18,29 +18,31 @@
         </div>
     <% } %>
 
-    <h2>Relatório de Clientes</h2>
+    <h2 style="text-align: center;">Relatório de Clientes</h2>
 
-    <script>
-        // Esconde o alerta após 3 segundos
-        setTimeout(() => {
-            const alert = document.getElementById('success-alert');
-            if (alert) {
-                alert.style.display = 'none';
-            }
-        }, 3000);
-    </script>
+    <div class="container" style="text-align: left;">
+        <script>
+            // Esconde o alerta após 3 segundos
+            setTimeout(() => {
+                const alert = document.getElementById('success-alert');
+                if (alert) {
+                    alert.style.display = 'none';
+                }
+            }, 3000);
+        </script>
 
-    <% clientes.forEach(cliente => { %>
-        <div><b>CPF:</b> <%= cliente.cpf %></div>
-        <div><b>Nome:</b> <%= cliente.nome %></div>
-        <div><b>Email:</b> <%= cliente.email %></div>
-        <div><b>Data de Nascimento:</b> <%= cliente.dataNascimento ? cliente.dataNascimento.toISOString().substring(0,10) : 'Não informado' %></div>
-        <div><b>Endereço:</b> <%= cliente.endereco || 'Não informado' %></div>
-        <div>
-            <a href="/clientes/<%= cliente.cpf %>" class="btn btn-primary">Detalhar</a>
-        </div>
-        <hr>
-    <% }); %> 
+        <% clientes.forEach(cliente => { %>
+            <div><b>CPF:</b> <%= cliente.cpf %></div>
+            <div><b>Nome:</b> <%= cliente.nome %></div>
+            <div><b>Email:</b> <%= cliente.email %></div>
+            <div><b>Data de Nascimento:</b> <%= cliente.dataNascimento ? cliente.dataNascimento.toISOString().substring(0,10) : 'Não informado' %></div>
+            <div><b>Endereço:</b> <%= cliente.endereco || 'Não informado' %></div>
+            <div>
+                <a href="/clientes/<%= cliente.cpf %>" class="btn btn-primary">Detalhar</a>
+            </div>
+            <hr>
+        <% }); %> 
+    </div>
 
     <%- include("../partials/rodape") %> 
 </body>

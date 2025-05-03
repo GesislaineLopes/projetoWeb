@@ -9,42 +9,52 @@
 </head>
 <body>
     <%- include("../partials/cabecalho") %>
-    <h2>Relatório de Pedidos</h2>
-    <% if (pedidos.length === 0) { %>
-        <p>Nenhum pedido encontrado.</p>
-    <% } else { %>
-        <table class="table table-striped">
+    <div class="container" style="text-align: center;">
+        <h2>Relatório de Pedidos</h2>
+        <table class="table table-striped table-dark" style="margin-left: auto; margin-right: auto;">
             <thead>
                 <tr>
                     <th>Cliente</th>
                     <th>Produtos</th>
-                    <th>Data do Pedido</th>
+                    <th>Quantidade</th>
+                    <th>Preço Total</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <% pedidos.forEach(pedido => { %>
+                <% pedidos.forEach(function(pedido) { %>
                     <tr>
-                        <td><%= pedido.cliente ? pedido.cliente.nome : 'Cliente não encontrado' %></td>
+                        <td><%= pedido.cliente.nome %></td>
                         <td>
                             <ul>
-                                <% pedido.produtos.forEach(item => { %>
-                                    <li><%= item.produto ? item.produto.nome : 'Produto não encontrado' %> - Quantidade: <%= item.quantidade %></li>
-                                <% }) %>
+                                <% pedido.produtos.forEach(function(item) { %>
+                                    <li><%= item.produto.nome %></li>
+                                <% }); %>
                             </ul>
                         </td>
-                        <td><%= pedido.dataPedido.toLocaleDateString('pt-BR') %></td>
                         <td>
-                            <form method="POST" action="/pedidos/excluir/<%= pedido._id %>" onsubmit="return confirm('Tem certeza que deseja excluir este pedido?');">
-                                <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                            <ul>
+                                <% pedido.produtos.forEach(function(item) { %>
+                                    <li><%= item.quantidade %></li>
+                                <% }); %>
+                            </ul>
+                        </td>
+                        <td>
+                            R$ 
+                            <%= pedido.produtos.reduce((total, item) => {
+                                return total + (item.produto.preco * item.quantidade);
+                            }, 0).toFixed(2) %>
+                        </td>
+                        <td>
+                            <form method="POST" action="/pedidos/excluir/<%= pedido._id %>" onsubmit="return confirm('Tem certeza que deseja excluir este pedido?');" style="display:inline;">
+                                <button type="submit" class="btn btn-danger">Excluir</button>
                             </form>
                         </td>
                     </tr>
-                <% }) %>
+                <% }); %>
             </tbody>
         </table>
-    <% } %>
-    <a href="/pedidos/cadastrar" class="btn btn-primary mt-3">Novo Pedido</a>
+    </div>
     <%- include("../partials/rodape") %>
 </body>
 </html>
