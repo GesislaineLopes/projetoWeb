@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<html data-bs-theme="dark"></html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detalhes do Produto</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <%- include("../partials/menu") %>
+</head>
+<body>
+    <%- include("../partials/cabecalho") %>
+    <% if (produto) { %>
+        <div><b>Nome:</b> <%= produto.nome %></div>
+        <div><b>Descrição:</b> <%= produto.descricao || 'Não informado' %></div>
+        <div><b>Preço:</b> R$ <%= produto.preco.toFixed(2) %></div>
+    <% } else { %>
+        <div>Produto não encontrado</div>
+    <% } %>
+    <div style="margin-top: 15px; text-align: left;">
+        <form method="POST" action="/produtos/excluir/<%= produto._id %>" onsubmit="return confirm('Tem certeza que deseja excluir este produto?');" style="display:inline-block; margin-right: 10px;">
+            <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+        </form>
+        <a href="/produtos/editar/<%= produto._id %>" class="btn btn-warning btn-sm ms-2">Editar</a>
+        <a href="/produtos" class="btn btn-primary btn-sm ms-2">Voltar</a>
+    </div>
+    <%- include("../partials/rodape") %>
+</body>
+</html>

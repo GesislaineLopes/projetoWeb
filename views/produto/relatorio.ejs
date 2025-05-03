@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<html data-bs-theme="dark"></html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Relatório de Produtos</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <%- include("../partials/menu") %>
+</head>
+<body>
+    <%- include("../partials/cabecalho") %>
+    <% if (status == '1') { %>
+        <div id="success-alert" class="alert alert-success" role="alert">
+            Produto cadastrado com <b>sucesso</b>.
+        </div>
+    <% } %>
+    <h2>Relatório de Produtos</h2>
+    <script>
+        setTimeout(() => {
+            const alert = document.getElementById('success-alert');
+            if (alert) {
+                alert.style.display = 'none';
+            }
+        }, 3000);
+    </script>
+    <% produtos.forEach(produto => { %>
+        <div><b>Nome:</b> <%= produto.nome %></div>
+        <div><b>Descrição:</b> <%= produto.descricao || 'Não informado' %></div>
+        <div><b>Preço:</b> R$ <%= produto.preco.toFixed(2) %></div>
+        <div>
+            <a href="/produtos/<%= produto._id %>" class="btn btn-primary">Detalhar</a>
+        </div>
+        <hr>
+    <% }); %>
+    <%- include("../partials/rodape") %>
+</body>
+</html>

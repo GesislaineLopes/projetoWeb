@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<html data-bs-theme="dark"></html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Editar Cliente</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <%- include("../partials/menu") %>
+</head>
+<body>
+    <%- include("../partials/cabecalho") %>
+    <div class="container">
+        <h2>Editar Cliente</h2>
+        <form method="POST" action="/clientes/editar/<%= cliente.cpf %>">
+            <div>
+                <label for="cpf" class="form-label">CPF:</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" value="<%= cliente.cpf %>" readonly />
+            </div>
+            <div>
+                <label for="nome" class="form-label">Nome:</label>
+                <input type="text" class="form-control" id="nome" name="nome" value="<%= cliente.nome %>" required />
+            </div>
+            <div>
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" value="<%= cliente.email %>" required />
+            </div>
+            <div>
+                <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
+                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" value="<%= cliente.dataNascimento ? cliente.dataNascimento.toISOString().substring(0,10) : '' %>" />
+            </div>
+            <div>
+                <label for="endereco" class="form-label">Endereço:</label>
+                <input type="text" class="form-control" id="endereco" name="endereco" value="<%= cliente.endereco %>" />
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Salvar Alterações</button>
+            <a href="/clientes" class="btn btn-secondary mt-2 ms-2">Cancelar</a>
+        </form>
+    </div>
+    <%- include("../partials/rodape") %>
+</body>
+</html>

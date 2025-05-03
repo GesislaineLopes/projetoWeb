@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<html data-bs-theme="dark"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Cliente</title>
+    <link rel="stylesheet" href="css/style.css">
+    <%- include("../partials/menu") %>    
+</head>
+<body>
+    <%- include("../partials/cabecalho") %>
+    <% if (cliente != undefined){ %>
+    <div>
+        <b>infCliente:</b>
+        <%= cliente.infCliente %>
+    </div>
+    <div>
+        <b>Nome:</b>
+        <%= cliente.nome %>
+    </div>
+    <div>
+        <b>Curso:</b>
+        <%= cliente.curso %>
+    </div>
+<% } else { %>
+    <div>Cliente não encontrado</div>
+<% } %>
+<form method="POST" action="/clientes/excluir/<%= cliente.cpf %>" onsubmit="return confirm('Tem certeza que deseja excluir este cliente?');" style="display:inline;">
+    <button type="submit" class="btn btn-danger ms-2">Excluir</button>
+</form>
+<a href="/clientes" class="btn btn-primary">Voltar</a>
+<a href="/clientes/editar/<%= cliente.cpf %>" class="btn btn-warning ms-2">Editar</a>
+<%- include("../partials/rodape") %>
+</body>
+</html>

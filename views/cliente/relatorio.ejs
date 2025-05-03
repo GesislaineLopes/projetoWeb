@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<html data-bs-theme="dark"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes</title>
+    <%- include("../partials/cabecalho") %>
+    <%- include("../partials/menu") %>
+
+</head>
+<body>
+
+    <% if (status == '1') { %>
+        <!-- Muda a cor do alerta ao cadastrar um cliente, usando Bootstrap -->
+        <div id="success-alert" class="alert alert-success" role="alert">
+            Cliente cadastrado com <b>sucesso</b>.
+        </div>
+    <% } %>
+
+    <h2>Relatório de Clientes</h2>
+
+    <script>
+        // Esconde o alerta após 3 segundos
+        setTimeout(() => {
+            const alert = document.getElementById('success-alert');
+            if (alert) {
+                alert.style.display = 'none';
+            }
+        }, 3000);
+    </script>
+
+    <% clientes.forEach(cliente => { %>
+        <div><b>CPF:</b> <%= cliente.cpf %></div>
+        <div><b>Nome:</b> <%= cliente.nome %></div>
+        <div><b>Email:</b> <%= cliente.email %></div>
+        <div><b>Data de Nascimento:</b> <%= cliente.dataNascimento ? cliente.dataNascimento.toISOString().substring(0,10) : 'Não informado' %></div>
+        <div><b>Endereço:</b> <%= cliente.endereco || 'Não informado' %></div>
+        <div>
+            <a href="/clientes/<%= cliente.cpf %>" class="btn btn-primary">Detalhar</a>
+        </div>
+        <hr>
+    <% }); %> 
+
+    <%- include("../partials/rodape") %> 
+</body>
+</html>
+
+

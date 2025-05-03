@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Relatório de Pedidos</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <%- include("../partials/menu") %>
+</head>
+<body>
+    <%- include("../partials/cabecalho") %>
+    <h2>Relatório de Pedidos</h2>
+    <% if (pedidos.length === 0) { %>
+        <p>Nenhum pedido encontrado.</p>
+    <% } else { %>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Produtos</th>
+                    <th>Data do Pedido</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% pedidos.forEach(pedido => { %>
+                    <tr>
+                        <td><%= pedido.cliente ? pedido.cliente.nome : 'Cliente não encontrado' %></td>
+                        <td>
+                            <ul>
+                                <% pedido.produtos.forEach(item => { %>
+                                    <li><%= item.produto ? item.produto.nome : 'Produto não encontrado' %> - Quantidade: <%= item.quantidade %></li>
+                                <% }) %>
+                            </ul>
+                        </td>
+                        <td><%= pedido.dataPedido.toLocaleDateString('pt-BR') %></td>
+                        <td>
+                            <form method="POST" action="/pedidos/excluir/<%= pedido._id %>" onsubmit="return confirm('Tem certeza que deseja excluir este pedido?');">
+                                <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } %>
+    <a href="/pedidos/cadastrar" class="btn btn-primary mt-3">Novo Pedido</a>
+    <%- include("../partials/rodape") %>
+</body>
+</html>

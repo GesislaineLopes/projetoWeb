@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<html data-bs-theme="dark"></html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cadastrar Produto</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <%- include("../partials/menu") %>
+</head>
+<body>
+    <%- include("../partials/cabecalho") %>
+    <div class="container">
+        <h2>Cadastrar Produto</h2>
+        <form method="POST" action="/produtos">
+            <div>
+                <label for="nome" class="form-label">Nome:</label>
+                <input type="text" class="form-control" id="nome" name="nome" required />
+            </div>
+            <div>
+                <label for="descricao" class="form-label">Descrição:</label>
+                <textarea class="form-control" id="descricao" name="descricao"></textarea>
+            </div>
+            <div>
+                <label for="preco" class="form-label">Preço:</label>
+                <input type="number" step="0.01" class="form-control" id="preco" name="preco" required min="0" />
+            </div>
+            <button type="submit" class="btn btn-success mt-2">Salvar</button>
+        </form>
+    </div>
+    <%- include("../partials/rodape") %>
+</body>
+</html>

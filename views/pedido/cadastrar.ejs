@@ -1,0 +1,55 @@
++<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cadastrar Pedido</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <%- include("../partials/menu") %>
+    <script>
+        function adicionarProduto() {
+            const container = document.getElementById('produtos-container');
+            const index = container.children.length;
+            const div = document.createElement('div');
+            div.className = 'mb-3 d-flex align-items-center';
+            div.innerHTML = `
+                <select name="produtos[${index}][produto]" class="form-select me-2" required>
+                    <option value="">Selecione um produto</option>
+                    <% produtos.forEach(function(produto) { %>
+                        <option value="<%= produto._id %>"><%= produto.nome %> - R$ <%= produto.preco.toFixed(2) %></option>
+                    <% }); %>
+                </select>
+                <label for="quantidade_${index}" class="form-label me-2" style="color: white;">Quantidade:</label>
+                <input id="quantidade_${index}" type="number" name="produtos[${index}][quantidade]" class="form-control me-2" min="1" value="1" required style="width: 100px;" />
+            `;
+            container.appendChild(div);
+        }
+        window.onload = function() {
+            adicionarProduto();
+        }
+    </script>
+</head>
+<body>
+    <%- include("../partials/cabecalho") %>
+    <div class="container">
+        <h2>Cadastrar Pedido</h2>
+        <form method="POST" action="/pedidos">
+            <div class="mb-3">
+                <label for="cliente" class="form-label">Cliente:</label>
+                <select id="cliente" name="cliente" class="form-select" required>
+                    <option value="">Selecione um cliente</option>
+                    <% clientes.forEach(function(cliente) { %>
+                        <option value="<%= cliente._id %>"><%= cliente.nome %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <div id="produtos-container" class="mb-3">
+                <!-- Produtos serão adicionados aqui -->
+            </div>
+            <br/>
+            <button type="submit" class="btn btn-success">Fazer Pedido</button>
+        </form>
+    </div>
+    <%- include("../partials/rodape") %>
+</body>
+</html>
