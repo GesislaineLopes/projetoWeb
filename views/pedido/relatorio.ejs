@@ -24,7 +24,7 @@
             <tbody>
                 <% pedidos.forEach(function(pedido) { %>
                     <tr>
-                        <td><%= pedido.cliente.nome %></td>
+                        <td><%= pedido.cliente ? pedido.cliente.nome : 'Cliente removido' %></td>
                         <td>
                             <ul>
                                 <% pedido.produtos.forEach(function(item) { %>

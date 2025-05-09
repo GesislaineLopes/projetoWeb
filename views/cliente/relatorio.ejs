@@ -38,7 +38,7 @@
             <div><b>Data de Nascimento:</b> <%= cliente.dataNascimento ? cliente.dataNascimento.toISOString().substring(0,10) : 'Não informado' %></div>
             <div><b>Endereço:</b> <%= cliente.endereco || 'Não informado' %></div>
             <div>
-                <a href="/clientes/<%= cliente.cpf %>" class="btn btn-primary">Detalhar</a>
+                <a href="/cliente/detalhar/<%= cliente.cpf %>" class="btn btn-primary">Detalhar</a>
             </div>
             <hr>
         <% }); %> 
