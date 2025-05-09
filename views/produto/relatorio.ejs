@@ -30,7 +30,7 @@
             <div><b>Descrição:</b> <%= produto.descricao || 'Não informado' %></div>
             <div><b>Preço:</b> R$ <%= produto.preco.toFixed(2) %></div>
             <div>
-                <a href="/produtos/<%= produto._id %>" class="btn btn-primary">Detalhar</a>
+            <a href="/produtos/detalhar/<%= produto._id %>" class="btn btn-primary">Detalhar</a>
             </div>
             <hr>
         <% }); %>

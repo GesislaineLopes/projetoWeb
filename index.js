@@ -17,6 +17,9 @@ const Pedido = require("./models/Pedido");
 const clienteRoutes = require("./routes/clienteRoutes");
 app.use("/cliente", clienteRoutes);
 
+const produtoRoutes = require("./routes/produtoRoutes");
+app.use("/produtos", produtoRoutes);
+
 // Página inicial home
 app.get("/", function (req, res){
     const casa = {
